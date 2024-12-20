@@ -12,7 +12,7 @@ contract Proxy {
         address value;
     }
     
-    constructor(address _logic, address _player) public {
+    constructor(address _logic, address _player) {
         require(Address.isContract(_logic), "implementation_not_contract");
         _getAddressSlot(_IMPLEMENTATION_SLOT).value = _logic;
 
