@@ -5,5 +5,8 @@ libs = ["lib"]
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
 remappings = [
-    "@openzeppelin/contracts/=lib/openzeppelin-contracts-4.8.0/contracts/",
+    "@openzeppelin-contracts-4.8.0/contracts/=lib/openzeppelin-contracts-4.8.0/contracts/",
+    "@openzeppelin-contracts-3.4.2/contracts/=lib/openzeppelin-contracts-3.4.2/contracts/",
+    "@uniswap/v3-core/=node_modules/@uniswap/v3-core/",
+    "@uniswap/v3-periphery/=node_modules/@uniswap/v3-periphery/"
 ]

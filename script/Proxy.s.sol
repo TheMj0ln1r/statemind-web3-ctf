@@ -5,7 +5,7 @@ import "forge-std/Script.sol";
 import "forge-std/console.sol";
 
 import {Proxy, Executor} from "../src/Proxy.sol";
-import "@openzeppelin/contracts/proxy/utils/Initializable.sol";
+import "@openzeppelin-contracts-4.8.0/contracts/proxy/utils/Initializable.sol";
 
 
 contract ProxySolve is Script {

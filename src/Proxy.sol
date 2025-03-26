@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/utils/Address.sol"; 
-import "@openzeppelin/contracts/proxy/utils/Initializable.sol";
+import "@openzeppelin-contracts-4.8.0/contracts/utils/Address.sol"; 
+import "@openzeppelin-contracts-4.8.0/contracts/proxy/utils/Initializable.sol";
 
 contract Proxy {
     // bytes32(uint256(keccak256("eip1967.proxy.implementation")) - 1)

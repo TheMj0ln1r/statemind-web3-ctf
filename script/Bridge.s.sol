@@ -4,13 +4,13 @@ pragma solidity ^0.8.20;
 import {Script} from "forge-std/Script.sol";
 import {console} from "forge-std/console.sol";
 import {Bridge, Token, BridgedERC20} from "../src/Bridge.sol";
-import {IERC20, IERC20Metadata} from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
-import {IERC777Sender} from "@openzeppelin/contracts/token/ERC777/IERC777Sender.sol";
-import {IERC1820Registry} from "@openzeppelin/contracts/utils/introspection/IERC1820Registry.sol";
+import {IERC20, IERC20Metadata} from "@openzeppelin-contracts-4.8.0/contracts/token/ERC20/extensions/IERC20Metadata.sol";
+import {IERC777Sender} from "@openzeppelin-contracts-4.8.0/contracts/token/ERC777/IERC777Sender.sol";
+import {IERC1820Registry} from "@openzeppelin-contracts-4.8.0/contracts/utils/introspection/IERC1820Registry.sol";
 
-import {ERC1820Implementer} from "@openzeppelin/contracts/utils/introspection/ERC1820Implementer.sol";
+import {ERC1820Implementer} from "@openzeppelin-contracts-4.8.0/contracts/utils/introspection/ERC1820Implementer.sol";
 
-
+// https://zokyo-auditing-tutorials.gitbook.io/zokyo-tutorials/tutorial-25-cross-chain-bridges-vulnerabilities/erc777-bridge-vulnerability-reentrancy-attack-in-token-accounting
 contract BridgeSolve is Script {
     Bridge public bridge = Bridge(payable(0xf7336fd84911203F1f01ab6803ECCc984700f591));
     Bridge public remoteBridge;
