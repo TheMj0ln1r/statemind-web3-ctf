@@ -8,7 +8,7 @@ import "forge-std/console.sol";
 import "../src/Fallout.sol";
 
 contract FalloutSolve is Script {
-    Fallout public fallout = Fallout(0x04c6c876C56d1830b9053e2014F58CF86A66d477);
+    Fallout public fallout = Fallout(0xf96C8C1685180b9551f86952992baAA220E7C91C);
     Vault public vault = fallout.vault();
     address player = vm.envAddress("PLAYER");
 
